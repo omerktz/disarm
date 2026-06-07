@@ -56,6 +56,14 @@ int main(void) {
     TESTF(DA64_HAVE_LSE, 0x08207c1f, DA64I_UNKNOWN, "") // Rt must be even
     TESTF(DA64_HAVE_LSE, 0x08217c1e, DA64I_UNKNOWN, "") // Rs must be even
     TESTF(DA64_HAVE_BF16, 0x1e634020, DA64I_BFCVT, "bfcvt h0, s1")
+    TEST(0x88231d25, DA64I_STXPW, "stxp w3, w5, w7, [x9]")
+    TEST(0x887f1d25, DA64I_LDXPW, "ldxp w5, w7, [x9]")
+    TEST(0xc8231d25, DA64I_STXPX, "stxp w3, x5, x7, [x9]")
+    TEST(0xc87f1d25, DA64I_LDXPX, "ldxp x5, x7, [x9]")
+    TEST(0x88037d25, DA64I_STXRW, "stxr w3, w5, [x9]")
+    TEST(0x885f7d25, DA64I_LDXRW, "ldxr w5, [x9]")
+    TEST(0xc8037d25, DA64I_STXRX, "stxr w3, x5, [x9]")
+    TEST(0xc85f7d25, DA64I_LDXRX, "ldxr x5, [x9]")
   // clang-format on
 
 #include "decode-test-branchreg.inc"

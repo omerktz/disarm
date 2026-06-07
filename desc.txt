@@ -381,7 +381,7 @@
   # canonical encoding of LDXR/STXR-Rt2=11111 LDX*-Rs=11111
   desc: {2:size}0010000{1:L}{1:P}{5:Rs}{1:o0}{5:Rt2}{5:Rn|SP}{5:Rt}
   mnem: {L,o0:0,0=ST:0,1=STL:1,0=LD:1,1=LDA}X{P,size<1>:0,0=R:0,1=R:1,1=P}{size:0=B:1=H:2=W:3=X}
-  decode: {L,o0:0,0=st:0,1=stl:1,0=ld:1,1=lda}x{P,size<1>:0,0=r:0,1=r:1,1=p}{size:0=b:1=h:2=:3=} {L:0=OPreggp(@Rs, 0):1=} OPreggp(@Rt, @size==3) {P:0=:1=OPreggp(@Rt, @size==3)} OPmemsoff(@Rn, 0)
+  decode: {L,o0:0,0=st:0,1=stl:1,0=ld:1,1=lda}x{P,size<1>:0,0=r:0,1=r:1,1=p}{size:0=b:1=h:2=:3=} {L:0=OPreggp(@Rs, 0):1=} OPreggp(@Rt, @size==3) {P:0=:1=OPreggp(@Rt2, @size==3)} OPmemsoff(@Rn, 0)
   encmnem: {L,o0:0,0=ST:0,1=STL:1,0=LD:1,1=LDA}X{P,size:0,0=RBw:0,1=RHw:0,2=Rw:0,3=Rx:1,2=Pw:1,3=Px}
   encops: Rs={L:0=reggp:1=regzr} Rt=reggp Rt2={P:0=regzr:1=reggp} Rn=reggpsp
 [MEMNP]
