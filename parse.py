@@ -582,6 +582,16 @@ class EncoderGenerator:
             "DA64_ENCODER": "\n".join(self.defns),
         }
 
+def write_if_changed(path: str, content: str):
+    try:
+        with open(path, "r+") as f:
+            if f.read() != content:
+                f.truncate(0)
+                f.write(content)
+    except OSError:
+        with open(path, "w") as f:
+            f.write(content)
+
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument("--features")
@@ -590,8 +600,8 @@ if __name__ == "__main__":
     parser.add_argument("--encode-in-header", action="store_true",
         help="Move most encoding logic to header")
     parser.add_argument("--feature-desc", help="Feature description file")
-    parser.add_argument("out_public", type=argparse.FileType("w"))
-    parser.add_argument("out_private", type=argparse.FileType("w"))
+    parser.add_argument("out_public")
+    parser.add_argument("out_private")
     parser.add_argument("descfiles", nargs="+")
     args = parser.parse_args()
 
@@ -651,5 +661,5 @@ if __name__ == "__main__":
                           for i, (key, val) in enumerate(private_dict.items()))
     private_str += '#else\n#error "unknown table"\n#endif\n'
 
-    args.out_public.write(public_features + public_decode + public_encode)
-    args.out_private.write(private_str)
+    write_if_changed(args.out_public, public_features + public_decode + public_encode)
+    write_if_changed(args.out_private, private_str)
