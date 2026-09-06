@@ -64,6 +64,10 @@ int main(void) {
     TEST(0x885f7d25, DA64I_LDXRW, "ldxr w5, [x9]")
     TEST(0xc8037d25, DA64I_STXRX, "stxr w3, x5, [x9]")
     TEST(0xc85f7d25, DA64I_LDXRX, "ldxr x5, [x9]")
+    TESTF(DA64_HAVE_LRCPC, 0x38bfc020, DA64I_LDAPRB, "ldaprb w0, [x1]")
+    TESTF(DA64_HAVE_LRCPC, 0x78bfc020, DA64I_LDAPRH, "ldaprh w0, [x1]")
+    TESTF(DA64_HAVE_LRCPC, 0xb8bfc020, DA64I_LDAPRW, "ldapr w0, [x1]")
+    TESTF(DA64_HAVE_LRCPC, 0xf8bfc020, DA64I_LDAPRX, "ldapr x0, [x1]")
   // clang-format on
 
 #include "decode-test-branchreg.inc"

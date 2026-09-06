@@ -1409,7 +1409,7 @@
 [RCPC]
   desc: {2:size}111000101{5:Rs=11111}110000{5:Rn}{5:Rt}
   mnem: LDAPR{size:0=B:1=H:2=W:3=X}
-  decode: LDAPR{size:0=B:1=H:2=:3=} OPreggp(@Rt, @size>=3) OPmemsoff(@Rn, 0)
+  decode: ldapr{size:0=b:1=h:2=:3=} OPreggp(@Rt, @size>=3) OPmemsoff(@Rn, 0)
   encmnem: LDAPR{size:0=B:1=H:2=w:3=x}
   encops: Rt=reggp Rn=reggpsp
   feat: LRCPC
