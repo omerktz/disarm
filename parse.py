@@ -585,12 +585,12 @@ class EncoderGenerator:
 def write_if_changed(path: str, content: str):
     try:
         with open(path, "r+") as f:
-            if f.read() != content:
-                f.truncate(0)
-                f.write(content)
+            if f.read() == content:
+                return
     except OSError:
-        with open(path, "w") as f:
-            f.write(content)
+        pass
+    with open(path, "w") as f:
+        f.write(content)
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
